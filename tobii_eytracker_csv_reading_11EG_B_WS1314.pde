@@ -5,7 +5,8 @@
  * and displays its gaze points
  */
 
-CSVFile tobiiexport; // the reference to the file
+CSVFile tobiiexportfile; // the reference to the file
+Table table;
 Column gazePointX; // a column from the CSV
 Column gazePointY; // another column from the CSV
 Column timestamp; // and another cpolumn from the CSV
@@ -28,14 +29,14 @@ void setup(){
    *
    *
    */
-  tobiiexport = new CSVFile("csvfiles/tobii-CSVExport-All-Data-noheader-nofilter.tsv", "\t", true);
+  tobiiexportfile = new CSVFile("csvfiles/tobii-CSVExport-All-Data-noheader-nofilter.tsv", "\t", true);
 
 
-tobiiexport.printHeaders(); // print all the headers to the console
-
- timestamp = tobiiexport.columns.get(0); // this is the timestamp column
- gazePointX = tobiiexport.columns.get(19); // this is the X view point
- gazePointY = tobiiexport.columns.get(20); // this is the Y view point
+table = tobiiexportfile.tables.get(0);// this is the one and only table right now
+table.printHeaders(); // print all the headers to the console
+ timestamp = table.columns.get(0); // this is the timestamp column
+ gazePointX = table.columns.get(19); // this is the X view point
+ gazePointY = table.columns.get(20); // this is the Y view point
 
 // timestamp.printCellValues(); // you could print all the values of the cell
 //
@@ -47,7 +48,7 @@ tobiiexport.printHeaders(); // print all the headers to the console
 
 
 void draw (){
-  int ndx = frameCount%tobiiexport.rowcount; // this holds the index of the current row
+  int ndx = frameCount%table.rowcount; // this holds the index of the current row
 
   float x = gazePointX.cells.get(ndx).getFloatValue() / scaler; // current x position
   float y = gazePointY.cells.get(ndx).getFloatValue() / scaler; // current y position
@@ -80,7 +81,7 @@ void draw (){
    * just stop it all when there are no more cells
    * @type {[type]}
    */
- if(ndx == tobiiexport.rowcount-1){
+ if(ndx == table.rowcount-1){
   // exit();
   noLoop();
  }
