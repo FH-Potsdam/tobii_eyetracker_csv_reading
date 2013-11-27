@@ -58,7 +58,7 @@ void draw (){
    * the proband looked at a position
    * @type {float}
    */
-  float timesize = timestamp.cells.get(ndx).getFloatValue() - oldtimesize;
+  float timesize = timestamp.cells.get(ndx).getFloatValue() /scaler;
   // println(ndx + " timesize: " + timesize); // just to see
   //
   /**
