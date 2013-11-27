@@ -1,3 +1,6 @@
+/**
+ * The cell class the heart of a CSV
+ */
 class Cell {
 
   int index = 0;
@@ -20,6 +23,11 @@ class Cell {
     this.value = str;
   }
 
+  //--------------------------------------
+  //  GETTER methods
+  //--------------------------------------
+
+
   float getFloatValue(){
     return parseFloat(this.value);
   }
@@ -33,6 +41,11 @@ class Cell {
   String getValue(){
     return this.value;
   }
+
+  //--------------------------------------
+  //  SETTER methods
+  //--------------------------------------
+
 
   void setFloatValue(float f){
     this.value = str(f);

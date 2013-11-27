@@ -1,7 +1,15 @@
+/**
+ * This is a column as you know it from a CSV
+ * has a list of cells
+ */
 class Column{
 String head = "";
 boolean hasheader = false;
 ArrayList <Cell> cells;
+
+  //--------------------------------------
+  //  CONSTRUCTOR
+  //--------------------------------------
 
   Column(String _head, boolean _hasheader){
     this.head = _head;
@@ -9,7 +17,9 @@ ArrayList <Cell> cells;
     cells = new ArrayList <Cell>();
   }
 
-
+/**
+ * print everything
+ */
 void printCellValues(){
   int start = 0;
   if(this.hasheader){

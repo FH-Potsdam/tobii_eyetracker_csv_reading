@@ -1,3 +1,7 @@
+/**
+ * This is for processing multiple files
+ * unused at the moment
+ */
 class CSVReader{
 
   ArrayList<CSVFile> files;

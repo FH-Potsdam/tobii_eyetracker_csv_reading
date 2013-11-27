@@ -1,3 +1,6 @@
+/**
+ * Pretty extensive CSVFIle class needs more comments
+ */
 class CSVFile extends File {
 
   public ArrayList <String> headers;
@@ -8,6 +11,10 @@ class CSVFile extends File {
   public boolean hascolumnheader = false;
   private int columncount = 0;
   private int rowcount = 0;
+
+  //--------------------------------------
+  //  CONSTRUCTOR
+  //--------------------------------------
 
   public CSVFile(String _path, String _delimiter, boolean _hascolumnheader){
     super(_path, _delimiter);
@@ -22,7 +29,9 @@ class CSVFile extends File {
     init();
 
   }
-
+  /**
+   * Print all that stuff
+   */
   public void printHeaders(){
     if(this.hascolumnheader){
       for(int i = 0; i < this.columns.size();i++){

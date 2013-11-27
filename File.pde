@@ -1,3 +1,7 @@
+/**
+ * A simple file only a reference to the location
+ * and a read function for displaying its content
+ */
 class File{
   String path;
   String delimiter;
