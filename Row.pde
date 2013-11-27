@@ -4,11 +4,9 @@
  */
 class Row {
 ArrayList <Cell> cells;
+Header header; // not yet implemented
 String head;
 boolean hasheader = false;
- // Row(){
- //   cells = new ArrayList<Cell>();
- // }
 
   Row(String _head, boolean _hasheader){
     this.head = _head;

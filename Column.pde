@@ -4,6 +4,7 @@
  */
 class Column{
 String head = "";
+Header header; // not yet implemented
 boolean hasheader = false;
 ArrayList <Cell> cells;
 

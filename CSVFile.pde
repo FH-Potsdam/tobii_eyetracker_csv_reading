@@ -1,5 +1,5 @@
 /**
- * Pretty extensive CSVFIle class needs more comments
+ * Pretty nice CSVFile class needs more comments
  */
 class CSVFile extends File {
 
