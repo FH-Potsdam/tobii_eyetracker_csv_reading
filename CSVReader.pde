@@ -12,12 +12,13 @@ class CSVReader{
 void read_files(){
   for(int i = 0; i < this.files.size();i++){
     // println(files.get(i).columns);
-    for(int j = 0; j < files.get(i).columns.size();j++){
-
+    for(int j = 0; j < this.files.get(i).tables.size();j++){
+      for(int k = 0; k < this.files.get(i).tables.get(j).columns.size();k++){
+        println("Colums cells: "+ files.get(i).tables.get(j).columns.get(k).cells);
+      }
 //      if(files.get(i).hasheader == true){
 //        println("Colums head: "+ files.get(i).columns.get(j).head);
 //      }
-      println("Colums cells: "+ files.get(i).columns.get(j).cells);
     }
     // for(int r = 0; r < files.get(i).rows.size();r++){
     //   println("Rows Cells: " + files.get(i).rows.get(r).cells);

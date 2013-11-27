@@ -36,17 +36,36 @@ public ArrayList <Header> headers;
 
   }
   /**
-   * Print all that stuff
+   * Print all headers of the columns
    */
-  public void printHeaders(){
+  public void printColumnHeaders(){
     if(this.hascolumnheader){
       for(int i = 0; i < this.columns.size();i++){
         println("Column: " + i + " --> " + this.columns.get(i).head);
       }
     }else{
-      println("This CSVFile has no headers");
+      println("This Table has no column headers");
     }
   }
+
+  /**
+   * Print all headers of the columns
+   */
+  public void printRowHeaders(){
+    if(this.hasrowheader){
+      for(int i = 0; i < this.rows.size();i++){
+        println("Row: " + i + " --> " + this.rows.get(i).head);
+      }
+    }else{
+      println("This Table has no row headers");
+    }
+  }
+
+public void printHeaders(){
+  this.printColumnHeaders();
+  this.printRowHeaders();
+}
+
 
   private String fix_decimal_delimiter(String str){
     return str.replaceAll(",",".");
@@ -75,7 +94,7 @@ private void init_cells(){
 
 private void init_columns(){
   for(int i = 0; i < this.columncount;i++){
-    this.columns.add(new Column("",true));
+    this.columns.add(new Column("",this.hascolumnheader));
   }
     Column currColumn;
   for(int c = 0; c < this.cells.size();c++){
@@ -93,14 +112,14 @@ private void init_columns(){
   private void init_rows() {
 
   for(int i = 0; i < this.rowcount;i++){
-    this.rows.add(new Row("",false));
+    this.rows.add(new Row("",this.hasrowheader));
   }
     Row currRow;
   for(int r = 0; r < this.cells.size();r++){
       currRow = this.rows.get(r%this.rowcount);
-      // if((c <  this.rowcount) &&(this.hasheader == true)){
-      //   currRow.head = this.cells.get(c).getStringValue();
-      // }
+      if((r < this.rowcount) &&(this.hasrowheader == true)){
+        currRow.head = this.cells.get(r).getStringValue();
+      }
       currRow.cells.add(this.cells.get(r));
   }
 

@@ -25,18 +25,19 @@ void setup(){
    * @type {CSVFile}
    * @argument path {String} the path to the file
    * @argument delimiter {String} the cell delimiter in the CSV
-   * @argument hasheader {boolean} if the CSV has headers in the column set this to true
+   * @argument hascolumnheader {boolean} if the CSV has headers in the columns, set this to true
+   * @argument hasrowheader {boolean} if the CSV has headers in the rows, set this to true
    *
    *
    */
-  tobiiexportfile = new CSVFile("csvfiles/tobii-CSVExport-All-Data-noheader-nofilter.tsv", "\t", true);
+  tobiiexportfile = new CSVFile("csvfiles/tobii-CSVExport-All-Data-noheader-nofilter.tsv", "\t", true,false);
 
 
-table = tobiiexportfile.tables.get(0);// this is the one and only table right now
-table.printHeaders(); // print all the headers to the console
- timestamp = table.columns.get(0); // this is the timestamp column
- gazePointX = table.columns.get(19); // this is the X view point
- gazePointY = table.columns.get(20); // this is the Y view point
+  table = tobiiexportfile.tables.get(0);// this is the one and only table right now
+  table.printHeaders(); // print all the headers to the console
+  timestamp = table.columns.get(0); // this is the timestamp column
+  gazePointX = table.columns.get(19); // this is the X view point
+  gazePointY = table.columns.get(20); // this is the Y view point
 
 // timestamp.printCellValues(); // you could print all the values of the cell
 //
