@@ -37,8 +37,8 @@ void setup(){
   csvfiles = new ArrayList<CSVFile>();
   csvfiles.add(new CSVFile("csvfiles/tobii-CSVExport-All-Data-noheader-nofilter.tsv", "\t", true,false));
   csvfiles.add(new CSVFile("csvfiles/Rec 04-All-Data-2stimuli.tsv", "\t", true,false));
-  csvfiles.add(new CSVFile("csvfiles/Rec 01.tsv", "\t", true,false));
-  csvfiles.add(new CSVFile("csvfiles/Rec 02.tsv", "\t", true,false));
+//  csvfiles.add(new CSVFile("csvfiles/Rec 01.tsv", "\t", true,false));
+//  csvfiles.add(new CSVFile("csvfiles/Rec 02.tsv", "\t", true,false));
 //  tobiiexportfile = new CSVFile("csvfiles/tobii-CSVExport-All-Data-noheader-nofilter.tsv", "\t", true,false);
 
 
@@ -96,7 +96,6 @@ if(  tableselect < csvfiles.size()){
 
 }else if(tableselect == csvfiles.size()){
 noLoop();
-
 }
 //  if(tableselect >= csvfiles.size()  ){
 //    
