@@ -11,17 +11,21 @@ Column gazePointX; // a column from the CSV
 Column gazePointY; // another column from the CSV
 Column timestamp; // and another cpolumn from the CSV
 int scaler = 2; // this is for rescaling the whole sketch
-
+ArrayList <CSVFile> csvfiles;
 /**
  * some globalb variables for holding values. This enables animations
  */
 float oldx;
 float oldy;
 float oldtimesize = 0;
+int tableselect = 0;
 
 void setup(){
+  
+  
+  
   /**
-   * This is a CSV file
+   * This is a CSV file list
    * @type {CSVFile}
    * @argument path {String} the path to the file
    * @argument delimiter {String} the cell delimiter in the CSV
@@ -29,15 +33,15 @@ void setup(){
    * @argument hasrowheader {boolean} if the CSV has headers in the rows, set this to true
    *
    *
-   */
-  tobiiexportfile = new CSVFile("csvfiles/tobii-CSVExport-All-Data-noheader-nofilter.tsv", "\t", true,false);
+   */ 
+  csvfiles = new ArrayList<CSVFile>();
+  csvfiles.add(new CSVFile("csvfiles/tobii-CSVExport-All-Data-noheader-nofilter.tsv", "\t", true,false));
+  csvfiles.add(new CSVFile("csvfiles/Rec 04-All-Data-2stimuli.tsv", "\t", true,false));
+  csvfiles.add(new CSVFile("csvfiles/Rec 01.tsv", "\t", true,false));
+  csvfiles.add(new CSVFile("csvfiles/Rec 02.tsv", "\t", true,false));
+//  tobiiexportfile = new CSVFile("csvfiles/tobii-CSVExport-All-Data-noheader-nofilter.tsv", "\t", true,false);
 
 
-  table = tobiiexportfile.tables.get(0);// this is the one and only table right now
-  table.printHeaders(); // print all the headers to the console
-  timestamp = table.columns.get(0); // this is the timestamp column
-  gazePointX = table.columns.get(19); // this is the X view point
-  gazePointY = table.columns.get(20); // this is the Y view point
 
 // timestamp.printCellValues(); // you could print all the values of the cell
 //
@@ -45,6 +49,7 @@ void setup(){
   oldx = width/2; // we need to start somewhere bette the center then the 0
   oldy = height/2;// we need to start somewhere bette the center then the 0
   background(255); // draw it one
+  gettable();
 }
 
 
@@ -84,10 +89,29 @@ void draw (){
    */
  if(ndx == table.rowcount-1){
   // exit();
-  noLoop();
+      tableselect++;
+
+if(  tableselect < csvfiles.size()){
+      gettable();
+
+}else if(tableselect == csvfiles.size()){
+noLoop();
+
+}
+//  if(tableselect >= csvfiles.size()  ){
+//    
+//    noLoop();
+//  }
  }
 }// end draw
 
+void gettable(){
+  table = csvfiles.get(tableselect).tables.get(0);// this is the one and only table right now
+  table.printHeaders(); // print all the headers to the console
+  timestamp = table.columns.get(0); // this is the timestamp column
+  gazePointX = table.columns.get(19); // this is the X view point
+  gazePointY = table.columns.get(20); // this is the Y view point
+}
 
 /**
  * nothing fancy just creating unique names of images
