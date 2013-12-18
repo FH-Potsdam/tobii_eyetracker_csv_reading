@@ -3,11 +3,14 @@
  * and a read function for displaying its content
  */
 class File{
+  String name;
   String path;
   String delimiter;
   File(String _path, String _delimiter){
     this.path = _path;
     this.delimiter = _delimiter;
+    String[] list = this.path.split("/"); 
+    this.name = list[1]; 
   }
 
   void read(){
