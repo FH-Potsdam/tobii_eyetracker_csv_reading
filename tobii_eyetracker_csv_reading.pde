@@ -19,6 +19,7 @@ float oldx;
 float oldy;
 float oldtimesize = 0;
 int tableselect = 0;
+int ndx = 0;
 
 void setup(){
   
@@ -35,10 +36,11 @@ void setup(){
    *
    */ 
   csvfiles = new ArrayList<CSVFile>();
-  csvfiles.add(new CSVFile("csvfiles/tobii-CSVExport-All-Data-noheader-nofilter.tsv", "\t", true,false));
-  csvfiles.add(new CSVFile("csvfiles/Rec 04-All-Data-2stimuli.tsv", "\t", true,false));
-  csvfiles.add(new CSVFile("csvfiles/Rec 01.tsv", "\t", true,false));
-  csvfiles.add(new CSVFile("csvfiles/Rec 02.tsv", "\t", true,false));
+  csvfiles.add(new CSVFile("csvfiles/J08.csv", "\t", true,false));
+  csvfiles.add(new CSVFile("csvfiles/J07.csv", "\t", true,false));
+//  csvfiles.add(new CSVFile("csvfiles/Rec 04-All-Data-2stimuli.tsv", "\t", true,false));
+//  csvfiles.add(new CSVFile("csvfiles/Rec 01.tsv", "\t", true,false));
+//  csvfiles.add(new CSVFile("csvfiles/Rec 02.tsv", "\t", true,false));
 //  tobiiexportfile = new CSVFile("csvfiles/tobii-CSVExport-All-Data-noheader-nofilter.tsv", "\t", true,false);
 
 
@@ -54,7 +56,7 @@ void setup(){
 
 
 void draw (){
-  int ndx = frameCount%table.rowcount; // this holds the index of the current row
+//  int ndx = frameCount%table.rowcount; // this holds the index of the current row
 
   float x = gazePointX.cells.get(ndx).getFloatValue() / scaler; // current x position
   float y = gazePointY.cells.get(ndx).getFloatValue() / scaler; // current y position
@@ -75,7 +77,7 @@ void draw (){
   float w = timesize - oldtimesize;
   float h = w; // just a circle
   fill(0);// now fill it black
-  ellipse(x, y, w, h);// draw all that stuff
+//  ellipse(x, y, w, h);// draw all that stuff
   noFill();// dont fill
   line(x,y,oldx,oldy); // draw the line from the old x/y to the current x/y
   oldx = x;// store current x as oldx
@@ -87,6 +89,7 @@ void draw (){
    * just stop it all when there are no more cells
    * @type {[type]}
    */
+   ndx++;
  if(ndx == table.rowcount-1){
   // exit();
       tableselect++;
@@ -106,6 +109,7 @@ noLoop();
 }// end draw
 
 void gettable(){
+  ndx = 0;
   table = csvfiles.get(tableselect).tables.get(0);// this is the one and only table right now
   table.printHeaders(); // print all the headers to the console
   timestamp = table.columns.get(0); // this is the timestamp column
