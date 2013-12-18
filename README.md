@@ -3,7 +3,20 @@ tobii_eytracker_csv_reading_11EG_B_WS1314
 
 This sketch is part of the course ["Eingabe, Ausgabe. Grundlagen der prozessorientierten Gestaltung"](https://incom.org/workspace/4693) by Monika Hoinkis  
 
-It takes a CSV file created by the Tobii Eyetracker from the Usability Lab and displays some data.  
+It takes CSV files created by the Tobii Eyetracker from the Usability Lab and displays some data. The files should not have the headers and filter settings applied when exporting tsv from Tobii Studio.    
+
+##usage:  
+
+- Place your .csv files in the folder `csvfiles`.
+- add your filenames to the csvfiles ArrayList like this:  
+
+    csvfiles.add(new CSVFile("csvfiles/tobii-CSVExport-All-Data-noheader-nofilter.tsv", "\t", true,false));  
+    csvfiles.add(new CSVFile("csvfiles/Rec 04-All-Data-2stimuli.tsv", "\t", true,false));  
+    csvfiles.add(new CSVFile("csvfiles/Rec 01.tsv", "\t", true,false));  
+    csvfiles.add(new CSVFile("csvfiles/Rec 02.tsv", "\t", true,false));  
+
+Run the sketch.  
+
 
 ![screen](screen.png)  
 

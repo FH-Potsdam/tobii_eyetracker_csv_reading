@@ -22,9 +22,9 @@ int tableselect = 0;
 int ndx = 0;
 
 void setup(){
-  
-  
-  
+
+
+
   /**
    * This is a CSV file list
    * @type {CSVFile}
@@ -34,11 +34,14 @@ void setup(){
    * @argument hasrowheader {boolean} if the CSV has headers in the rows, set this to true
    *
    *
-   */ 
+   */
   csvfiles = new ArrayList<CSVFile>();
   csvfiles.add(new CSVFile("csvfiles/J08.csv", "\t", true,false));
   csvfiles.add(new CSVFile("csvfiles/J07.csv", "\t", true,false));
 //  csvfiles.add(new CSVFile("csvfiles/Rec 04-All-Data-2stimuli.tsv", "\t", true,false));
+//csvfiles.add(new CSVFile("csvfiles/tobii-CSVExport-All-Data-noheader-nofilter.tsv", "\t", true,false));
+  ////csvfiles.add(new CSVFile("csvfiles/Rec 04-All-Data-2stimuli.tsv", "\t", true,false));
+
 //  csvfiles.add(new CSVFile("csvfiles/Rec 01.tsv", "\t", true,false));
 //  csvfiles.add(new CSVFile("csvfiles/Rec 02.tsv", "\t", true,false));
 //  tobiiexportfile = new CSVFile("csvfiles/tobii-CSVExport-All-Data-noheader-nofilter.tsv", "\t", true,false);
@@ -99,10 +102,9 @@ if(  tableselect < csvfiles.size()){
 
 }else if(tableselect == csvfiles.size()){
 noLoop();
-
 }
 //  if(tableselect >= csvfiles.size()  ){
-//    
+//
 //    noLoop();
 //  }
  }
