@@ -5,12 +5,14 @@
  * and displays its gaze points
  */
 
+import processing.pdf.*; // inlcude the pdf lib
+
 CSVFile tobiiexportfile; // the reference to the file
 Table table;
 Column gazePointX; // a column from the CSV
 Column gazePointY; // another column from the CSV
 Column timestamp; // and another cpolumn from the CSV
-int scaler = 2; // this is for rescaling the whole sketch
+int scaler = 1; // this is for rescaling the whole sketch
 ArrayList <CSVFile> csvfiles;
 /**
  * some globalb variables for holding values. This enables animations
@@ -20,7 +22,8 @@ float oldy;
 float oldtimesize = 0;
 int tableselect = 0;
 int ndx = 0;
-boolean exportSequence = false;
+boolean exportSequence = true;
+boolean exportPDF = true;
 
 void setup(){
   
@@ -53,10 +56,15 @@ void setup(){
   oldy = height/2;// we need to start somewhere bette the center then the 0
   background(255); // draw it one
   gettable();
+//  frameRate(25);
+  beginRecord(PDF, "everything.pdf");
+
 }
 
 
 void draw (){
+//  println(frameRate);
+
 //  int ndx = frameCount%table.rowcount; // this holds the index of the current row
 
   float x = gazePointX.cells.get(ndx).getFloatValue() / scaler; // current x position
@@ -91,6 +99,8 @@ void draw (){
    * @type {[type]}
    */
    ndx++;
+   if(exportSequence) sequenceExporter();
+
  if(ndx == table.rowcount-1){
   // exit();
       tableselect++;
@@ -99,7 +109,13 @@ if(  tableselect < csvfiles.size()){
       gettable();
 
 }else if(tableselect == csvfiles.size()){
-noLoop();
+    if(!exportPDF){
+      noLoop();
+    }else{
+       endRecord();
+      exit();
+       
+    }
 
 }
 //  if(tableselect >= csvfiles.size()  ){
@@ -107,7 +123,6 @@ noLoop();
 //    noLoop();
 //  }
  }
- if(exportSequence) sequenceExporter();
 }// end draw
 
 void gettable(){
